@@ -21,6 +21,8 @@ Alerte payant
 
 ## Putty pour la connexion ssh
 
+[doc aws sur putty](http://docs.aws.amazon.com/fr_fr/AWSEC2/latest/UserGuide/putty.html)
+
 ## Installation sur la VM de Rstudio server et H2O
 
 ```bash
