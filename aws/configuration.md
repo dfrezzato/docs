@@ -15,36 +15,40 @@ Sources combinées pour faire cette documentation :
 
 [Amazon Web Services](https://aws.amazon.com/fr/)
 
-Alerte payant
-
+Suivre les instructions et s'entraîner dans un premier temps sur les instances gratuites.
 
 ## Créer un VPC (Virtual Private Cloud)
-![console](images/01-console.png "console")
 
-
-02-start-vpc.png
-03-vpc-select.png
-04-vpc-config.png
-05-vpc-config.png
-06-console.png
-07-launch-instance.png
-08-OS.png
-09-instance-type.png
-10-instance-detail.png
-11-vpc-ip.png
-12-add-storage.png
-13-storage-size-review-launch.png
-14-edit-security-group.png
-15-tcp-rules.png
-16-review-launch.png
-17-launch.png
-18-download-keypair.png
-19-launch-status.png
-20-public-dns-ip.png
+![01](images/01-console.png "console")
+![02](images/02-start-vpc.png)
+![03](images/03-vpc-select.png)
+![04](images/04-vpc-config.png)
+![05](images/05-vpc-config.png)
 
 ## Création de la VM
 
-ubuntu 16.04
+![06](images/06-console.png)
+![07](images/07-launch-instance.png)
+![08](images/08-OS.png)
+![09](images/09-instance-type.png)
+![10](images/10-instance-detail.png)
+
+## Paramétrage de la VM
+
+![11](images/11-vpc-ip.png)
+![12](images/12-add-storage.png)
+![13](images/13-storage-size-review-launch.png)
+![14](images/14-edit-security-group.png)
+![15](images/15-tcp-rules.png)
+![16](images/16-review-launch.png)
+
+## Authentification
+
+![17](images/17-launch.png)
+![18](images/18-download-keypair.png)
+![19](images/19-launch-status.png)
+![20](images/20-public-dns-ip.png)
+
 
 ## Putty pour la connexion ssh
 
