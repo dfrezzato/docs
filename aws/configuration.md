@@ -19,6 +19,28 @@ Alerte payant
 
 
 ## Créer un VPC (Virtual Private Cloud)
+![console](images/01-console.png "console")
+
+
+02-start-vpc.png
+03-vpc-select.png
+04-vpc-config.png
+05-vpc-config.png
+06-console.png
+07-launch-instance.png
+08-OS.png
+09-instance-type.png
+10-instance-detail.png
+11-vpc-ip.png
+12-add-storage.png
+13-storage-size-review-launch.png
+14-edit-security-group.png
+15-tcp-rules.png
+16-review-launch.png
+17-launch.png
+18-download-keypair.png
+19-launch-status.png
+20-public-dns-ip.png
 
 ## Création de la VM
 
