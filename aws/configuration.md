@@ -19,37 +19,93 @@ Suivre les instructions et s'entraîner dans un premier temps sur les instances 
 
 ## Créer un VPC (Virtual Private Cloud)
 
+Chercher l'outil VPC dans la liste des services :
+
 ![01](images/01-console.png "console")
+
+Start VPC wizard :
+
 ![02](images/02-start-vpc.png)
+
+Select :
+
 ![03](images/03-vpc-select.png)
+
+Laisser les paramètres par défaut et indiquer le nom du VPC (ici datascience) :
+
 ![04](images/04-vpc-config.png)
+
+Create VPC :
+
 ![05](images/05-vpc-config.png)
 
 ## Création de la VM
 
+Choisir EC2 dans la liste des services :
+
 ![06](images/06-console.png)
+
+Launch instance :
+
 ![07](images/07-launch-instance.png)
+
+Choisir ubuntu server 16.04 (les instructions de configuration diffèreront si la distribution n'est pas une ubuntu) :
+
 ![08](images/08-OS.png)
+
+Choisir le type d'instance (c'est là que se décide la puissance de calcul nécessaire) :
+
 ![09](images/09-instance-type.png)
+
+Configure instance detail :
+
 ![10](images/10-instance-detail.png)
 
 ## Paramétrage de la VM
 
+indiquer le nom du VPC dans Network ainsi que Enable pour Auto-assign Public IP :
+
 ![11](images/11-vpc-ip.png)
+
+Clic sur add storage :
+
 ![12](images/12-add-storage.png)
+
+Taille du stockage puis clic sur review and launch :
+
 ![13](images/13-storage-size-review-launch.png)
+
+Edit security group (permet d'ouvrir les ports nécessaires pour communiquer avec l'instance ec2) :
+
 ![14](images/14-edit-security-group.png)
+
+Ajouter les règles tcp telles qu'affichée (ports 8787 et 8888, anywhere) :
+
 ![15](images/15-tcp-rules.png)
+
+Review and Launch :
+
 ![16](images/16-review-launch.png)
 
 ## Authentification
 
+Clic sur launch :
+
 ![17](images/17-launch.png)
+
+L'instance nous fournit la clé d'authentification (indiquer le ```key pair name``` puis ```download keypair```), qui servira à se connecter ultérieurement (une sorte de mot de passe qu'on télécharge au préalable sur la machine locale) :
+
 ![18](images/18-download-keypair.png)
+
+Lancement en cours :
+
 ![19](images/19-launch-status.png)
+
+L'instance ec2 est lancée, elle est accessible depuis son ```Public DNS``` de la forme ```ec2.xxxxxx.amazonaws.com``` :
+
 ![20](images/20-public-dns-ip.png)
 
-
+Il faut maintenant s'y connecter puis installer les programmes nécessaires.
 
 ## Connexion à l'instance ec2
 
@@ -62,24 +118,29 @@ Putty est un programme permettant de se connecter à l'instance ec2 en lançant 
 
 Putty utilise la clé d'authentification qui a été téléchargée (fichier téléchargé juste avant le lancement de la VM)
 
-Indiquer l'adresse de l'instance (disponible depuis la console) sous forme de ubuntu@XXX
+Indiquer l'adresse de l'instance (disponible depuis la console) sous forme de ubuntu@XXX :
+
 ![p01](images/putty_manuel/01-session.png)
 
 Lorsqu'il faut passer par un proxy, indiquer les paramètres de celui-ci :
+
 ![p02](images/putty_manuel/02-proxy.png)
 
 Saisir les paramètres qui permettent d'associer le serveur localhost:8888 de la vmlinux au lien localhost:8888 de la machine locale :
+
 ![p03](images/putty_manuel/03-ssh-tunnel.png)
 
 Putty utilise un format de clé (fichier ```*.ppk```) qui n'est pas le même que celui qu'on a téléchargé (```*.pem```), il faut donc utiliser puttygen pour la conversion :
 
 cliquer sur *load* et chercher l'emplacement du fichier ```*.pem``` :
+
 ![p04](images/putty_manuel/04-puttygen.png)
 
 La clé a été convertie en fichier ```*.ppk```, cliquer sur *save private key* et choisir l'emplacement du fichier ```*.ppk``` :
 ![p05](images/putty_manuel/05-key-conversion.png)
 
-On peut fermer l'application putty gen et renseigner la clé dans putty
+On peut fermer l'application putty gen et renseigner la clé dans putty :
+
 ![p06](images/putty_manuel/06-cle-session.png)
 
 Finalement, cliquer sur *Open* dans putty : ceci lance la connection à l'instance ec2 ainsi que le tunnel ssh (qui servira par la suite pour jupyter notebook)
