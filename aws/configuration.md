@@ -50,12 +50,41 @@ Suivre les instructions et s'entraîner dans un premier temps sur les instances 
 ![20](images/20-public-dns-ip.png)
 
 
-## Putty pour la connexion ssh
-
-[doc aws sur putty](http://docs.aws.amazon.com/fr_fr/AWSEC2/latest/UserGuide/putty.html)
 
 ## Connexion à l'instance ec2
 
+
+### Cas 1 : Machine locale sous windows
+
+[doc aws sur putty](http://docs.aws.amazon.com/fr_fr/AWSEC2/latest/UserGuide/putty.html)
+
+Putty est un programme permettant de se connecter à l'instance ec2 en lançant un terminal.
+
+Putty utilise la clé d'authentification qui a été téléchargée (fichier téléchargé juste avant le lancement de la VM)
+
+Indiquer l'adresse de l'instance (disponible depuis la console) sous forme de ubuntu@XXX
+![p01](images/putty_manuel/01-session.png)
+
+Lorsqu'il faut passer par un proxy, indiquer les paramètres de celui-ci :
+![p02](images/putty_manuel/02-proxy.png)
+
+Saisir les paramètres qui permettent d'associer le serveur localhost:8888 de la vmlinux au lien localhost:8888 de la machine locale :
+![p03](images/putty_manuel/03-ssh-tunnel.png)
+
+Putty utilise un format de clé (fichier ```*.ppk```) qui n'est pas le même que celui qu'on a téléchargé (```*.pem```), il faut donc utiliser puttygen pour la conversion :
+
+cliquer sur *load* et chercher l'emplacement du fichier ```*.pem``` :
+![p04](images/putty_manuel/04-puttygen.png)
+
+La clé a été convertie en fichier ```*.ppk```, cliquer sur *save private key* et choisir l'emplacement du fichier ```*.ppk``` :
+![p05](images/putty_manuel/05-key-conversion.png)
+
+On peut fermer l'application putty gen et renseigner la clé dans putty
+![p06](images/putty_manuel/06-cle-session.png)
+
+Finalement, cliquer sur *Open* dans putty : ceci lance la connection à l'instance ec2 ainsi que le tunnel ssh (qui servira par la suite pour jupyter notebook)
+
+### Cas 2 : Machine locale sous linux
 Si notre machine locale est sous linux :
 
 ```bash
@@ -64,12 +93,10 @@ cd ~/Dropbox/keypair/ # endroit où on a déposé sa clé
 chmod 400 datascience.pem
 ssh -i "datascience.pem" ubuntu@ec2-XXXXXXX.eu-central-1.compute.amazonaws.com
 ```
-Si notre machine locale est sous windows : utiliser Putty
-
 
 ## Installation sur la VM de Rstudio server et H2O
 
-On est maintenant logué dans la machine virtuelle : les commandes suivantes sont exécutées par l'instance ec2.
+On est maintenant logué dans la machine virtuelle via ssh : les commandes suivantes sont saisies via ssh et exécutées par l'instance ec2.
 
 ```bash
 # installation de R et rstudio server
@@ -121,9 +148,11 @@ jupyter notebook
 # l'url a la forme : http://localhost:8888/?token=6cf7df71be234f35e86XXXXc326e150390fadfcdcbe5e94a
 ```
 
+** bien penser à récupérer l'url du notebook**
+
 controle-b d permet de quitter tmux et le serveur (lancé par la commande jupyter notebook) continuera de tourner.
 
-## SSH tunneling
+## Jupyter notebook via SSH tunneling
 
 Permet d'associer une url à joindre depuis le pc local qui permet d'atteindre l'instance ec2 via ssh.
 La session
@@ -135,8 +164,8 @@ Si on a un pc local sous linux, on utilise cette commande :
 cd ~/Dropbox/keypair/ # endroit où on a déposé sa clé
 ssh -i "datascience.pem" -L 8888:localhost:8888 ubuntu@ec2-XXXXXXX.eu-central-1.compute.amazonaws.com
 ```
-Si on a un pc local sous windows, il faut utiliser putty
+Si le pc local est sous windows et que putty a été paramétré dans les sections précédentes, le tunnel SSH est déjà en place.
 
-Enfin, aller à l'url http://localhost:8888/?token=6cf7df71be234f35e86XXXXc326e150390fadfcdcbe5e94a depuis son navigateur.
+Aller à l'url http://localhost:8888/?token=6cf7df71be234f35e86XXXXc326e150390fadfcdcbe5e94a depuis son navigateur.
 
 ## Jupyter Notebook avec mot de passe
