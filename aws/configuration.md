@@ -209,14 +209,13 @@ jupyter notebook
 # l'url a la forme : http://localhost:8888/?token=6cf7df71be234f35e86XXXXc326e150390fadfcdcbe5e94a
 ```
 
-** bien penser à récupérer l'url du notebook**
+Bien penser à récupérer l'url du notebook.
 
-controle-b d permet de quitter tmux et le serveur (lancé par la commande jupyter notebook) continuera de tourner.
+*controle-b d* permet de quitter tmux et le serveur (lancé par la commande jupyter notebook) continuera de tourner.
 
 ## Jupyter notebook via SSH tunneling
 
-Permet d'associer une url à joindre depuis le pc local qui permet d'atteindre l'instance ec2 via ssh.
-La session
+Permet d'associer localhost:8888 sur le pc local au localhost:8888 (sur lequel écoute le serveur jupyter notebook) de l'instance ec2 via ssh.
 
 Si on a un pc local sous linux, on utilise cette commande :
 
@@ -227,6 +226,6 @@ ssh -i "datascience.pem" -L 8888:localhost:8888 ubuntu@ec2-XXXXXXX.eu-central-1.
 ```
 Si le pc local est sous windows et que putty a été paramétré dans les sections précédentes, le tunnel SSH est déjà en place.
 
-Aller à l'url http://localhost:8888/?token=6cf7df71be234f35e86XXXXc326e150390fadfcdcbe5e94a depuis son navigateur.
+Aller à l'url http://localhost:8888/?token=XXX depuis son navigateur.
 
 ## Jupyter Notebook avec mot de passe
